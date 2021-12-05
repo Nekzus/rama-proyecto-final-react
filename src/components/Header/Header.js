@@ -1,8 +1,9 @@
+import React from 'react';
 import NavBar from '../NavBar/NavBar';
 import LogoStore from '../Commom/LogoStore';
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const Header = () => {
     return (

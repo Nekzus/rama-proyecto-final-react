@@ -1,27 +1,63 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-const ItemCount = ({stock = 15}) => {
+
+const ItemCount = ({stock}) => {
 
     const [count, setCount] = useState(1);
-    if(count <= stock && count >=1){
     const btnIncrease = () => setCount(count + 1)
     const btnDecrease = () => setCount(count - 1)
     
+    if(count > 1 && count < stock) {
     return (
-        <div>
-            <h2>{count}</h2>
-            <button className="btn btn-decrease btn-dark"onClick={btnDecrease}>-</button>
-            <button className="btn btn-increase btn-dark"onClick={btnIncrease}>+</button>
-            <button className="btn btn-add btn-dark">Agregar al carrito</button>
+        <div className='item-count'>
+            <h5>{count}</h5>
+            <div className='container'>
+            <div className='container mt-2 mb-2'>
+            <button className="btn btn-decrease btn-secondary"onClick={btnDecrease}>-</button>
+            <button className="btn btn-increase btn-secondary"onClick={btnIncrease}>+</button>
+            </div>
+            <button className="btn btn-add btn-secondary">Agregar al carrito</button>
+            </div>
         </div>
     )
-}
+    }else if (count === 1) {
+        return (
+            <div className='item-count'>
+                <h5>{count}</h5>
+                <div className='container'>
+                <div className='container mt-2 mb-2'>
+                <button className="btn btn-decrease btn-secondary" disabled onClick={btnDecrease}>-</button>
+                <button className="btn btn-increase btn-secondary"onClick={btnIncrease}>+</button>
+                </div>
+                <button className="btn btn-add btn-secondary">Agregar al carrito</button>
+                </div>
+            </div>
+        )
+    }else if (count === stock){ 
+        return (
+            <div className='item-count'>
+                <h5>{count}</h5>
+                <div className='container'>
+                <div className='container mt-2 mb-2'>
+                <button className="btn btn-decrease btn-secondary"onClick={btnDecrease}>-</button>
+                <button className="btn btn-increase btn-secondary" disabled onClick={btnIncrease}>+</button>
+                </div>
+                <button className="btn btn-add btn-secondary">Agregar al carrito</button>
+                </div>
+            </div>
+        )
+    } else {
+        return;
+    }
+
 }
 
 ItemCount.propTypes = {
-    value: PropTypes.number,
     stock: PropTypes.number,
+}
+ItemCount.defaultProps = {
+    stock: 1,
 }
 
 export default ItemCount
